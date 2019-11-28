@@ -8,12 +8,24 @@
 
 import Foundation
 
-struct MovieListViewModel: BaseViewModel {
-    var service: MovieListViewModelService?
+class MovieListViewModel: BaseViewModel {
+    var dataSource: MovieListViewModelService?
+    var onAddNewMovie: ((Int?) -> Void)?
     
-    init(with service: MovieListViewModelService? = nil) { self.service = service }
+    required init(with service: MovieListViewModelService? = nil) { self.dataSource = service }
+
+}
+
+extension MovieListViewModel {
+    func add(movie: Movie) {
+        dataSource?.add(movie)
+        guard let totalMoviesCount = dataSource?.movies.count else { return }
+        self.onAddNewMovie?(totalMoviesCount - 1)
+    }
 }
 
 struct MovieListViewModelService {
-    var id: Int
+    var movies: [Movie]
+    
+    mutating func add(_ movie: Movie) { self.movies.append(movie) }
 }
