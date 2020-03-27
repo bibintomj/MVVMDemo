@@ -10,7 +10,7 @@ import UIKit
 
 final class MovieListViewController: BaseViewController, ViewModelInitializable {
     
-    var viewModel: MovieListViewModel!
+    var viewModel: MovieListViewModel?
     @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ private extension MovieListViewController {
         alert.addAction(.init(title: "Add", style: .default, handler: { _ in
             let name = alert.textFields?.first?.text ?? ""
             let year = Int(alert.textFields?.last?.text ?? "0") ?? 0
-            self.viewModel.add(movie: .init(id: Int.random(in: (10...100)), name: name, releasedYear: year))
+            self.viewModel?.add(movie: .init(id: Int.random(in: (10...100)), name: name, releasedYear: year))
         }))
         self.present(alert, animated: true)
     }
@@ -50,15 +50,23 @@ private extension MovieListViewController {
     }
 }
 
-extension MovieListViewController: UITableViewDataSource {
+extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewModel.dataSource?.movies.count ?? 0
+        self.viewModel?.dataSource?.numberOfMovies ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.movie = self.viewModel.dataSource?.movies[indexPath.row]
+        cell.movie = self.viewModel?.dataSource?.movie(at: indexPath.row)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailScene = MovieDetailViewController.instantiate()
+        detailScene.movie = self.viewModel?.dataSource?.movie(at: indexPath.row)
+        self.navigationController?.pushViewController(detailScene, animated: true)
+        
     }
 }
 

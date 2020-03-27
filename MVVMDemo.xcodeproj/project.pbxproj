@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D010D3E2238FAEBE0091E33B /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D010D3E1238FAEBE0091E33B /* MovieDetailViewController.swift */; };
 		D03A3866238E49F700495EBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A3865238E49F700495EBB /* AppDelegate.swift */; };
 		D03A3868238E49F700495EBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03A3867238E49F700495EBB /* SceneDelegate.swift */; };
 		D03A386F238E49FA00495EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D03A386E238E49FA00495EBB /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D010D3E1238FAEBE0091E33B /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		D03A3862238E49F700495EBB /* MVVMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D03A3865238E49F700495EBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D03A3867238E49F700495EBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D010D3E0238FAE8C0091E33B /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D010D3E1238FAEBE0091E33B /* MovieDetailViewController.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
 		D03A3859238E49F700495EBB = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 		D03A3889238E4A4700495EBB /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				D010D3E0238FAE8C0091E33B /* MovieDetail */,
 				D03A388A238E4A7B00495EBB /* MovieList */,
 				D03A389A238E538C00495EBB /* BaseViewController.swift */,
 			);
@@ -302,6 +313,7 @@
 				D03A3866238E49F700495EBB /* AppDelegate.swift in Sources */,
 				D03A3868238E49F700495EBB /* SceneDelegate.swift in Sources */,
 				D03A3894238E4B4B00495EBB /* ApplicationConfiguration.swift in Sources */,
+				D010D3E2238FAEBE0091E33B /* MovieDetailViewController.swift in Sources */,
 				D03A388E238E4AB800495EBB /* MovieListViewModel.swift in Sources */,
 				D0E319EC238E762000D3B3F7 /* NibLoadable+ReuseIdentifying.swift in Sources */,
 				D03A389B238E538C00495EBB /* BaseViewController.swift in Sources */,

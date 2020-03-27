@@ -18,21 +18,24 @@ protocol BaseViewModel: class {
     /// A common initializer for ViewModels.
     /// - Parameter dataSource: A property that will be used to initialize the ViewModel.
     init(with dataSource: DataSource?)
+
 }
 
 protocol ViewModelInitializable {
     /// Type of ViewModel that will be used to create View.
     associatedtype ViewModel: BaseViewModel
     /// ViewModel property for view.
-    var viewModel: ViewModel! { get set }
+    var viewModel: ViewModel? { get set }
     /// A Common initializer for View using ViewModel
     /// - Parameter viewModel: ViewModel Object to attach to the view.
     init(with viewModel: ViewModel)
     /// A Common initializer for View using a property that will create the ViewModel.
     /// - Parameter dataSource: A datasource property that will be used to create ViewModel, which will be in turn used to create the View.
-    init(with dataSource: ViewModel.DataSource)
+    init(with dataSource: ViewModel.DataSource?)
+
     /// Use this function to bind the View to ViewModel.
     func bind(to viewModel: ViewModel)
+
 }
 
 extension ViewModelInitializable {
@@ -42,16 +45,17 @@ extension ViewModelInitializable {
 
 /// Default imnplementation in assiciation with Storyboarded protocol.
 extension ViewModelInitializable where Self: Storyboarded {
+    
     init(with viewModel: ViewModel) {
         self = .instantiate()
         self.viewModel = viewModel
         self.bind(to: viewModel)
     }
     
-    init(with dataSource: ViewModel.DataSource) {
+    init(with dataSource: ViewModel.DataSource?) {
         self = .instantiate()
         self.viewModel = .init(with: dataSource)
-        self.bind(to: viewModel)
+        self.bind(to: viewModel!)
     }
 }
 
@@ -63,9 +67,10 @@ extension ViewModelInitializable where Self: NibLoadable {
         self.bind(to: viewModel)
     }
     
-    init(with dataSource: ViewModel.DataSource) {
+    init(with dataSource: ViewModel.DataSource?) {
         self = .instantiate()
         self.viewModel = .init(with: dataSource)
-        self.bind(to: viewModel)
+        self.bind(to: viewModel!)
     }
+    
 }

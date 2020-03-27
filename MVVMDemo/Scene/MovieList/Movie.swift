@@ -12,7 +12,7 @@ struct Movie {
     var id: Int
     var name: String
     var releasedYear: Int
-    var image: UIImage { [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7")].randomElement()! }
+    var image: UIImage = { [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "4"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "7")].randomElement()! }()
 }
 
 let testMovies: [Movie] = [ .init(id: 1, name: "Batman", releasedYear: 2008),
